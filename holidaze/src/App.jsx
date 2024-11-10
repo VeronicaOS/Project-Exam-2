@@ -1,30 +1,33 @@
-import logo from "./logo.svg";
-import "./App.css";
+import styles from "./App.module.css";
 import Layout from "./components/layout/layout";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// import HomePage from "./pages/home/home";
+// import ProductPage from "./pages/product/productPage";
+// import ContactPage from "./pages/contact/contact";
+// import CheckoutPage from "./pages/checkout/checkout";
+// import CheckoutSuccessPage from "./pages/checkout/checkoutSuccess";
+import ScrollToTop from "./components/scroll/scroll";
 
 function App() {
     return (
-        <BrowserRouter>
+        <Router>
+            <ScrollToTop />
             <Layout>
-                <div className="App">
-                    <header className="App-header">
-                        <img src={logo} className="App-logo" alt="logo" />
-                        <p>
-                            Edit <code>src/App.js</code> and save to reload.
-                        </p>
-                        <a
-                            className="App-link"
-                            href="https://reactjs.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Learn React
-                        </a>
-                    </header>
-                </div>
+                <Routes>
+                    {/* <Route path="/" element={<HomePage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route
+                        path="/product/:productId"
+                        element={<ProductPage />}
+                    />
+                    <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route
+                        path="/checkout-success"
+                        element={<CheckoutSuccessPage />}
+                    /> */}
+                </Routes>
             </Layout>
-        </BrowserRouter>
+        </Router>
     );
 }
 
