@@ -1,7 +1,7 @@
 import styles from "./App.module.css";
 import Layout from "./components/layout/layout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import HomePage from "./pages/home/home";
+import HomePage from "./pages/home/homePage";
 // import ProductPage from "./pages/product/productPage";
 // import ContactPage from "./pages/contact/contact";
 // import CheckoutPage from "./pages/checkout/checkout";
@@ -14,8 +14,8 @@ function App() {
             <ScrollToTop />
             <Layout>
                 <Routes>
-                    {/* <Route path="/" element={<HomePage />} />
-                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/" element={<HomePage />} />
+                    {/* <Route path="/contact" element={<ContactPage />} />
                     <Route
                         path="/product/:productId"
                         element={<ProductPage />}
