@@ -6,7 +6,7 @@
 }
 
 .logo {
-    flex: 1;
+    width: 16rem;
 }
 
 .logoImage {
@@ -14,7 +14,6 @@
 }
 
 .nav {
-    flex: 2;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -36,21 +35,36 @@
     cursor: pointer;
 }
 
-.hamburger span {
+.bar {
+    width: 25px;
     height: 3px;
-    width: 100%;
     background-color: #333;
-    border-radius: 5px;
+    margin: 2px 0;
+    transition: 0.4s;
+    border-radius: 1.5px;
+}
+
+/* Styling for the bars when the menu is open */
+.bar1 {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.bar2 {
+    opacity: 0; /* Hides the middle bar */
+}
+
+.bar3 {
+    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .nav {
     display: flex;
 }
 
-.nav.active {
+.headerRight {
+    width: 16rem;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    justify-content: flex-end;
 }
 
 .logbutton {
@@ -61,4 +75,40 @@
     margin: 5%;
     width: 4rem;
     height: 2rem;
+}
+
+/* MEDIA QUERIES MOBILE & IPAD */
+@media only screen and (min-width: 0px) and (max-width: 1180px) {
+    /* Hide navigation and login button container on smaller screens */
+    .nav {
+        display: none;
+    }
+
+    /* Show the hamburger menu icon */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 24px;
+    }
+
+    /* Open the navigation menu and display login button inside the menu */
+    .open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    /* Style the nav links inside the open menu */
+    .open a {
+        padding: 10px 0;
+        text-align: right;
+        color: white;
+        text-decoration: none;
+    }
 }

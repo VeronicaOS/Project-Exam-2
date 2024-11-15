@@ -4,10 +4,11 @@ import styles from "./header.module.css";
 import logoImage from "../../assets/images/logo/holidaze-logo.png";
 
 const Header = () => {
-    const [isNavActive, setIsNavActive] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const toggleNav = () => {
-        setIsNavActive(!isNavActive);
+    // Function to toggle menu open/close
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
     };
 
     return (
@@ -20,28 +21,36 @@ const Header = () => {
                 />
             </div>
             <nav
-                className={`${styles.nav} ${isNavActive ? styles.active : ""}`}
+                className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}
                 id="nav"
             >
-                <Link className={styles.link}>Home</Link>
                 <Link to="/" className={styles.link}>
+                    Home
+                </Link>
+                <Link to="/Venues" className={styles.link}>
                     Venues
                 </Link>
-                <Link to="/contact" className={styles.link}>
+                <Link to="/Manage Venues" className={styles.link}>
                     Manage Venues
                 </Link>
             </nav>
-            <div>
+            <div className={styles.headerRight}>
                 <button className={styles.logbutton}>Log in</button>
             </div>
             <div
                 className={styles.hamburger}
                 id="hamburger"
-                onClick={toggleNav}
+                onClick={toggleMenu}
             >
-                <span></span>
-                <span></span>
-                <span></span>
+                <span
+                    className={`${styles.bar} ${isMenuOpen ? styles.bar1 : ""}`}
+                ></span>
+                <span
+                    className={`${styles.bar} ${isMenuOpen ? styles.bar2 : ""}`}
+                ></span>
+                <span
+                    className={`${styles.bar} ${isMenuOpen ? styles.bar3 : ""}`}
+                ></span>
             </div>
         </header>
     );
