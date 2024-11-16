@@ -35,22 +35,28 @@ const Header = () => {
                 </Link>
             </nav>
             <div className={styles.headerRight}>
-                <button className={styles.logbutton}>Log in</button>
-            </div>
-            <div
-                className={styles.hamburger}
-                id="hamburger"
-                onClick={toggleMenu}
-            >
-                <span
-                    className={`${styles.bar} ${isMenuOpen ? styles.bar1 : ""}`}
-                ></span>
-                <span
-                    className={`${styles.bar} ${isMenuOpen ? styles.bar2 : ""}`}
-                ></span>
-                <span
-                    className={`${styles.bar} ${isMenuOpen ? styles.bar3 : ""}`}
-                ></span>
+                <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+                <div
+                    className={styles.hamburger}
+                    id="hamburger"
+                    onClick={toggleMenu}
+                >
+                    <span
+                        className={`${styles.bar} ${
+                            isMenuOpen ? styles.bar1 : ""
+                        }`}
+                    ></span>
+                    <span
+                        className={`${styles.bar} ${
+                            isMenuOpen ? styles.bar2 : ""
+                        }`}
+                    ></span>
+                    <span
+                        className={`${styles.bar} ${
+                            isMenuOpen ? styles.bar3 : ""
+                        }`}
+                    ></span>
+                </div>
             </div>
         </header>
     );

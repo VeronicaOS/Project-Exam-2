@@ -37,7 +37,7 @@
 
 .bar {
     width: 25px;
-    height: 3px;
+    height: 2.5px;
     background-color: #333;
     margin: 2px 0;
     transition: 0.4s;
@@ -67,16 +67,6 @@
     justify-content: flex-end;
 }
 
-.logbutton {
-    background-color: #ffcc99;
-    color: #a65400;
-    border: none;
-    border-radius: 5px;
-    margin: 5%;
-    width: 4rem;
-    height: 2rem;
-}
-
 /* MEDIA QUERIES MOBILE & IPAD */
 @media only screen and (min-width: 0px) and (max-width: 1180px) {
     /* Hide navigation and login button container on smaller screens */
@@ -90,6 +80,7 @@
         flex-direction: column;
         justify-content: center;
         height: 24px;
+        margin-left: 0.5rem;
     }
 
     /* Open the navigation menu and display login button inside the menu */
@@ -110,5 +101,9 @@
         text-align: right;
         color: white;
         text-decoration: none;
+    }
+
+    .headerRight i {
+        line-height: 1.5rem;
     }
 }
