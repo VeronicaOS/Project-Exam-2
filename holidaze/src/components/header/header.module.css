@@ -59,12 +59,21 @@
 
 .nav {
     display: flex;
+    align-self: self-end;
+    padding-bottom: 0.7rem;
 }
 
 .headerRight {
     width: 16rem;
     display: flex;
     justify-content: flex-end;
+    align-self: self-end;
+    padding-bottom: 0.7rem;
+}
+
+.user {
+    font-size: 1.5rem;
+    color: #f77f00;
 }
 
 /* MEDIA QUERIES MOBILE & IPAD */
@@ -81,6 +90,7 @@
         justify-content: center;
         height: 24px;
         margin-left: 0.5rem;
+        align-self: center;
     }
 
     /* Open the navigation menu and display login button inside the menu */
@@ -101,9 +111,5 @@
         text-align: right;
         color: white;
         text-decoration: none;
-    }
-
-    .headerRight i {
-        line-height: 1.5rem;
     }
 }

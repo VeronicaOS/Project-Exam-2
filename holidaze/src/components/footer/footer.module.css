@@ -1,7 +1,10 @@
-.footer {
-    background-color: #f0ebe7;
-    padding: 3% 7%;
+footer {
     color: #333;
+    background-color: #f0ebe7;
+}
+
+.footerWhole {
+    padding: 3% 7%;
 }
 
 .footerNav {

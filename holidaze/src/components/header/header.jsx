@@ -35,7 +35,7 @@ const Header = () => {
                 </Link>
             </nav>
             <div className={styles.headerRight}>
-                <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+                <i className={`${styles.user} fa fa-user-circle`}></i>
                 <div
                     className={styles.hamburger}
                     id="hamburger"

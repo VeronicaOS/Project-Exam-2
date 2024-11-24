@@ -1,0 +1,19 @@
+.petSection {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.sectionTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cards in a row */
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+}
