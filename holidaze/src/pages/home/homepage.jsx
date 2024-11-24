@@ -8,6 +8,7 @@ import styles from "./homePage.module.css";
 const HomePage = () => {
     return (
         <div className={styles.container}>
+            <HeroSection />
             {/* <FavoritesSection /> */}
             <NewsletterSection />
             <PetSection />

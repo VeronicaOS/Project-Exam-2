@@ -1,21 +1,24 @@
-.heroSection {
-    position: absolute;
-    top: 67.5px;
-    left: 0;
+.heroImage {
+    position: relative;
     width: 100%;
-    height: 60vh; /* Or any desired height */
-    background-image: url("../../../assets/images/hero/hero-image.jpg");
+    height: 60vh; /* Adjust based on your design preference */
+    background-image: url("../../../assets/images/hero/hero-image.jpg"); /* Replace with the actual path */
     background-size: cover;
     background-position: center;
-    z-index: -1; /* Push it behind other content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: subtle shadow for text contrast */
 }
 
-.heroMain {
-}
-
-.heroSpacer {
-    height: 60vh; /* Same height as heroSection */
-    width: 100%;
+.heroSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .heroSection h1 {

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 7%;
+    padding: 0 5.5%;
 }
 
 .logo {
@@ -73,7 +73,7 @@
 
 .user {
     font-size: 1.5rem;
-    color: #f77f00;
+    color: #3e8e65;
 }
 
 /* MEDIA QUERIES MOBILE & IPAD */
