@@ -2,6 +2,7 @@ import styles from "./App.module.css";
 import Layout from "./components/layout/layout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home/homePage";
+import LoginPage from "./pages/login/login";
 // import ProductPage from "./pages/product/productPage";
 // import ContactPage from "./pages/contact/contact";
 // import CheckoutPage from "./pages/checkout/checkout";
@@ -15,6 +16,7 @@ function App() {
             <Layout>
                 <Routes>
                     <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
                     {/* <Route path="/contact" element={<ContactPage />} />
                     <Route
                         path="/product/:productId"
