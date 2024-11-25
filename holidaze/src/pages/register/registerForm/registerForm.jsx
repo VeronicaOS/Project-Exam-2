@@ -10,7 +10,8 @@ const RegisterForm = ({
 }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h2 className={styles.heading}>Create Your Account</h2>
+      <h1 className={styles.heading1}>Welcome!</h1>
+      <h2 className={styles.heading2}>Create an account</h2>
 
       {/* Name Input */}
       <div className={styles.inputGroup}>
@@ -84,9 +85,9 @@ const RegisterForm = ({
         <label className={styles.checkboxLabel}>
           <input
             type="checkbox"
-            id="isVenueManager"
-            name="isVenueManager"
-            checked={formData.isVenueManager}
+            id="venueManager"
+            name="venueManager"
+            checked={formData.venueManager}
             onChange={(e) =>
               handleChange({
                 target: {

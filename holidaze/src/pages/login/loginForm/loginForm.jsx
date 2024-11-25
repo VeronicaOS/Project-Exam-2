@@ -4,7 +4,8 @@ import styles from "../login.module.css";
 const LoginForm = ({ formData, handleChange, isLoading, error }) => {
     return (
         <>
-            <h2 className={styles.heading}>Log In</h2>
+            <h1 className={styles.heading1}>Welcome back!</h1>
+            <h2 className={styles.heading2}>Log In</h2>
 
             {/* Email Input */}
             <div className={styles.inputGroup}>

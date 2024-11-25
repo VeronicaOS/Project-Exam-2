@@ -24,6 +24,7 @@ const LoginPage = () => {
                 }
 
                 const data = await response.json();
+                console.log("Backend response data:", data);
                 const { accessToken: token, ...profile } = data.data;
 
                 // Save token and profile to localStorage
@@ -31,20 +32,22 @@ const LoginPage = () => {
                 localStorage.setItem("profile", JSON.stringify(profile));
 
                 // Redirect to home
-                window.location.href = "/";
+                // window.location.href = "/";
             },
         });
 
     return (
         <div className={styles.container}>
-            <form onSubmit={handleSubmit} className={styles.form}>
-                <LoginForm
-                    formData={formData}
-                    handleChange={handleChange}
-                    isLoading={isLoading}
-                    error={error}
-                />
-            </form>
+            <div className={styles.formWrapper}>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <LoginForm
+                        formData={formData}
+                        handleChange={handleChange}
+                        isLoading={isLoading}
+                        error={error}
+                    />
+                </form>
+            </div>
         </div>
     );
 };

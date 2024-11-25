@@ -11,7 +11,7 @@ const RegisterPage = () => {
                 email: "",
                 password: "",
                 confirmPassword: "",
-                isVenueManager: false, // Default to regular user
+                venueManager: false, // Default to regular user
             },
             submitAction: async (formData) => {
                 if (formData.password !== formData.confirmPassword) {
@@ -22,9 +22,8 @@ const RegisterPage = () => {
                     name: formData.name,
                     email: formData.email,
                     password: formData.password,
-                    isVenueManager: formData.isVenueManager, // Include venue manager field
+                    venueManager: formData.venueManager, // Include venue manager field
                 };
-                console.log("Payload being sent to the server:", body);
 
                 const response = await fetch(
                     "https://v2.api.noroff.dev/auth/register",
