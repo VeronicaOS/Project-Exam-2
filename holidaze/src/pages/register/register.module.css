@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../../assets/images/backgrounds/registerBackground.jpg")
+        no-repeat center center / cover;
+}
+
+.formWrapper {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #ff6600;
+    text-align: center;
+}
+
+.inputGroup {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkboxLabel {
+    margin-left: 5px;
+    font-size: 0.9rem;
+}
+
+.checkbox {
+    margin-right: 8px;
+}
+
+.error {
+    color: red;
+    margin-bottom: 15px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.linkText {
+    color: #ff6600;
+    text-decoration: none;
+}
