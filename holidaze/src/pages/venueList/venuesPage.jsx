@@ -63,6 +63,7 @@ const VenuesPage = () => {
                     {visibleVenues.map((venue) => (
                         <VenueCard
                             key={venue.id}
+                            id={venue.id}
                             title={venue.name}
                             price={venue.price}
                             imageUrl={venue.media[0]?.url}

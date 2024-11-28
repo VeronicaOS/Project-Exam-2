@@ -6,6 +6,7 @@ import HomePage from "./pages/home/homePage";
 import LoginPage from "./pages/login/login";
 import RegisterPage from "./pages/register/register";
 import VenuesPage from "./pages/venueList/venuesPage";
+import VenueDetailsPage from "./pages/venueDetails/venueDetailsPage";
 // import ProductPage from "./pages/product/productPage";
 // import ContactPage from "./pages/contact/contact";
 // import CheckoutPage from "./pages/checkout/checkout";
@@ -23,6 +24,10 @@ function App() {
                         <Route path="/login" element={<LoginPage />} />
                         <Route path="/register" element={<RegisterPage />} />
                         <Route path="/venues" element={<VenuesPage />} />
+                        <Route
+                            path="/venues/:id"
+                            element={<VenueDetailsPage />}
+                        />
                         {/* <Route path="/contact" element={<ContactPage />} />
                     <Route
                         path="/product/:productId"
