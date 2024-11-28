@@ -1,5 +1,5 @@
 import React from "react";
-import CardHome from "../../../components/cards/cardHome/cardHome";
+import HomeCard from "../../../components/cards/homeCard/homeCard";
 import backgroundImage from "../../../assets/images/hero/hero-image.jpg";
 import profileImage from "../../../assets/images/profileImage/profileImage.png";
 import styles from "./petSection.module.css";
@@ -23,7 +23,7 @@ const PetSection = () => {
                 <h2 className={styles.sectionTitle}>Pet Travel Mockup</h2>
                 <div className={styles.cardsContainer}>
                     {cards.map((card, index) => (
-                        <CardHome
+                        <HomeCard
                             key={index}
                             image={card.image}
                             profileImage={card.profileImage}

@@ -29,7 +29,7 @@ const Header = () => {
                     <Link to="/" className={styles.link}>
                         Home
                     </Link>
-                    <Link to="/Venues" className={styles.link}>
+                    <Link to="/venues" className={styles.link}>
                         Venues
                     </Link>
                     <Link to="/Manage Venues" className={styles.link}>

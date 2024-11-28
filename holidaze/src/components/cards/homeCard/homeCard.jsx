@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./cardHome.module.css";
+import styles from "./homeCard.module.css";
 
-const CardHome = ({ image, profileImage, title, description }) => {
+const HomeCard = ({ image, profileImage, title, description }) => {
     return (
         <div className={styles.card}>
             <div
@@ -24,4 +24,4 @@ const CardHome = ({ image, profileImage, title, description }) => {
     );
 };
 
-export default CardHome;
+export default HomeCard;
