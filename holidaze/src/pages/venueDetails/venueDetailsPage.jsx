@@ -4,6 +4,7 @@ import DetailsSection from "./detailsSection/detailsSection";
 import BookingSection from "./bookingSection/bookingSection";
 import FeaturesSection from "./featuresSection/featuresSection";
 import sharedStyles from "../styles.module.css";
+import { BASE_URL, API_KEY } from "../../api/constants";
 
 const VenueDetailsPage = () => {
     const { id } = useParams(); // Get the venue ID from the URL
@@ -13,10 +14,16 @@ const VenueDetailsPage = () => {
 
     useEffect(() => {
         const fetchVenue = async () => {
+            const endpoint = `/holidaze/venues/${id}`;
+            const url = BASE_URL + endpoint;
+            const token = localStorage.getItem("token");
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                "X-Noroff-API-Key": API_KEY,
+            };
+
             try {
-                const response = await fetch(
-                    `https://v2.api.noroff.dev/holidaze/venues/${id}`
-                );
+                const response = await fetch(url, { method: "GET", headers });
                 if (!response.ok) {
                     throw new Error("Failed to fetch venue data");
                 }
@@ -45,8 +52,10 @@ const VenueDetailsPage = () => {
         <div className={sharedStyles.wrapper}>
             <div>
                 <DetailsSection venue={venue} />
-                <BookingSection />
-                <FeaturesSection />
+                <BookingSection venue={venue} />{" "}
+                {/* Pass venue data to Booking */}
+                <FeaturesSection venue={venue} />{" "}
+                {/* Pass venue data to Features */}
             </div>
         </div>
     );

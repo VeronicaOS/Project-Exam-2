@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ProfileMenu from "../profileMenu/profileMenu";
 import styles from "./header.module.css";
 import logoImage from "../../assets/images/logo/holidazeLogo.png";
 import sharedStyles from "../../pages/styles.module.css";
@@ -7,7 +8,6 @@ import sharedStyles from "../../pages/styles.module.css";
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Function to toggle menu open/close
     const toggleMenu = () => {
         setIsMenuOpen((prev) => !prev);
     };
@@ -32,12 +32,15 @@ const Header = () => {
                     <Link to="/venues" className={styles.link}>
                         Venues
                     </Link>
-                    <Link to="/Manage Venues" className={styles.link}>
+                    <Link to="/manage-venues" className={styles.link}>
                         Manage Venues
                     </Link>
                 </nav>
                 <div className={styles.headerRight}>
-                    <i className={`${styles.user} fa fa-user-circle`}></i>
+                    {/* Add DropdownMenu here */}
+                    <ProfileMenu />
+
+                    {/* Hamburger Icon */}
                     <div
                         className={styles.hamburger}
                         id="hamburger"
