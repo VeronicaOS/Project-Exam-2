@@ -1,6 +1,5 @@
 .card {
-    width: 100%;
-    max-width: 20rem; /* Set max width for the card */
+    width: 20rem; /* Set max width for the card */
     height: 13.5rem;
     border-radius: 10px;
     overflow: hidden;

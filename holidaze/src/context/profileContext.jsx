@@ -36,7 +36,7 @@ export const ProfileProvider = ({ children }) => {
     };
 
     return (
-        <ProfileContext.Provider value={{ profile, fetchProfile }}>
+        <ProfileContext.Provider value={{ profile, setProfile, fetchProfile }}>
             {children}
         </ProfileContext.Provider>
     );
