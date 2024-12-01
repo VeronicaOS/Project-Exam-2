@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import VenueCard from "../../components/cards/venuesCard/venuesCard";
+import { fetchVenues } from "../../utils/fetchVenues"; // Import the utility function
 import styles from "./venuesPage.module.css";
 import sharedStyles from "../styles.module.css";
 
@@ -11,28 +12,21 @@ const VenuesPage = () => {
     const [page, setPage] = useState(1); // Current page number
     const ITEMS_PER_PAGE = 12; // Number of venues to display per load
 
-    // Fetch venues from the API
+    // Fetch venues on mount
     useEffect(() => {
-        const fetchVenues = async () => {
+        const loadVenues = async () => {
             try {
-                const response = await fetch(
-                    "https://v2.api.noroff.dev/holidaze/venues"
-                );
-                if (!response.ok) {
-                    throw new Error("Failed to fetch venues");
-                }
-                const data = await response.json();
-                setVenues(data.data); // Assuming `data.data` is the array of venues
-                setVisibleVenues(data.data.slice(0, ITEMS_PER_PAGE)); // Show initial 12
+                const allVenues = await fetchVenues(); // Use the utility function
+                setVenues(allVenues); // Store all venues
+                setVisibleVenues(allVenues.slice(0, ITEMS_PER_PAGE)); // Show initial 12
             } catch (err) {
-                console.error(err);
                 setError("Failed to load venues. Please try again later.");
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchVenues();
+        loadVenues();
     }, []);
 
     // Handle "Load More" button click

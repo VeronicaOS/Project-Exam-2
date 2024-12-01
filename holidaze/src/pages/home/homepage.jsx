@@ -18,7 +18,6 @@ const HomePage = () => {
         <div className={styles.container}>
             <HeroSection />
             {/* Conditional rendering if profile exists */}
-            {profile && <p>Welcome, {profile.name}!</p>}
             {/* <FavoritesSection /> */}
             <NewsletterSection />
             <PetSection />

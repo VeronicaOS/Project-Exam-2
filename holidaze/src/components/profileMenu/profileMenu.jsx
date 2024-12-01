@@ -1,19 +1,36 @@
-import React, { useState } from "react";
-import { useProfile } from "../../context/profileContext"; // Import ProfileContext
+import React, { useState, useRef, useEffect } from "react";
+import { useProfile } from "../../context/profileContext";
 import styles from "./profileMenu.module.css";
 import { handleLogout } from "../../utils/logout";
 
-const ProfileMenu = ({ onLogout }) => {
+const ProfileMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { profile, setProfile } = useProfile(); // Access profile data directly from context
+    const { profile, setProfile } = useProfile(); // Access profile data from context
+    const menuRef = useRef(null); // Reference to the dropdown container
 
     const toggleDropdown = () => {
         setIsOpen((prev) => !prev);
     };
 
+    const handleClickOutside = (event) => {
+        // Close menu if the click is outside the dropdown
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        // Add event listener to detect outside clicks
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            // Clean up event listener
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     const renderMenuOptions = () => {
         if (!profile) {
-            // User not logged in
             return (
                 <>
                     <li>
@@ -26,9 +43,7 @@ const ProfileMenu = ({ onLogout }) => {
             );
         }
 
-        // User is logged in
         return profile.venueManager ? (
-            // Venue Manager options
             <>
                 <li>
                     <a href="/dashboard">Dashboard</a>
@@ -46,7 +61,6 @@ const ProfileMenu = ({ onLogout }) => {
                 </li>
             </>
         ) : (
-            // Regular User options
             <>
                 <li>
                     <a href="/bookings">My Bookings</a>
@@ -64,10 +78,12 @@ const ProfileMenu = ({ onLogout }) => {
     };
 
     return (
-        <div className={styles.profileMenuContainer}>
+        <div className={styles.profileMenuContainer} ref={menuRef}>
             {/* User icon toggles dropdown */}
             <i
-                className={`${styles.userIcon} fa fa-user-circle`}
+                className={`${styles.userIcon} fa fa-user-circle ${
+                    profile ? styles.loggedIn : styles.loggedOut // Apply conditional styling
+                }`}
                 onClick={toggleDropdown}
             ></i>
 

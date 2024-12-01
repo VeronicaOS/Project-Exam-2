@@ -1,0 +1,78 @@
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%; /* Adjust the width of the search container */
+    max-width: 600px;
+    background-color: rgba(
+        255,
+        255,
+        255,
+        0.9
+    ); /* White background for contrast */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.searchContainer input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px 0 0 8px; /* Round only the left side */
+    outline: none; /* Removes the default browser outline */
+}
+
+.searchContainer button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff; /* Replace with your preferred button color */
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0; /* Round only the right side */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.searchContainer button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.searchContainer input::placeholder {
+    color: #aaa; /* Lighter color for placeholder text */
+    font-style: italic; /* Optional: make it look a bit stylized */
+}
+
+.searchResults {
+    position: absolute;
+    top: calc(100% + 5px); /* Push slightly below the input */
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    margin-top: 0; /* Remove margin to avoid extra spacing */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.searchResultItem {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.searchResultItem:hover {
+    background-color: #f0f0f0;
+}
+
+.noResults {
+    padding: 10px;
+    color: #888;
+    font-style: italic;
+}
