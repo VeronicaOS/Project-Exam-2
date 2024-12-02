@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { BASE_URL, API_KEY } from "../api/constants"; // Adjust the path as needed
 
 const ProfileContext = createContext();
 
@@ -11,16 +12,16 @@ export const ProfileProvider = ({ children }) => {
     const fetchProfile = async (username, token) => {
         try {
             console.log("Fetching profile for:", username);
-            const response = await fetch(
-                `https://v2.api.noroff.dev/holidaze/profiles/${username}`,
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        "X-Noroff-API-Key": "your-api-key",
-                    },
-                }
-            );
+            const url = `${BASE_URL}/holidaze/profiles/${username}?_bookings=true&_venues=true`;
+            console.log("Fetching from URL:", url);
+
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "X-Noroff-API-Key": API_KEY,
+                },
+            });
 
             if (!response.ok) {
                 throw new Error("Failed to fetch profile data.");

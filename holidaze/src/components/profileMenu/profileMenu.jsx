@@ -49,10 +49,10 @@ const ProfileMenu = () => {
                     <a href="/dashboard">Dashboard</a>
                 </li>
                 <li>
-                    <a href="/manage-venues">Manage Venues</a>
+                    <a href="/create-venue">Create Venue</a>
                 </li>
                 <li>
-                    <a href="/profile">My Profile</a>
+                    <a href="/manager-profile">My Profile</a>
                 </li>
                 <li>
                     <button onClick={() => handleLogout(setProfile)}>

@@ -42,11 +42,13 @@ const VenueDetailsPage = () => {
 
     return (
         <div className={sharedStyles.wrapper}>
-            <div>
-                <DetailsSection venue={venue} />
-                {/* Pass bookings directly to BookingSection */}
-                <BookingSection venueId={venue.id} bookings={bookings} />
-                <FeaturesSection venue={venue} />
+            <div className={sharedStyles.mainPadding}>
+                <div>
+                    <DetailsSection venue={venue} />
+                    {/* Pass bookings directly to BookingSection */}
+                    <BookingSection venueId={venue.id} bookings={bookings} />
+                    <FeaturesSection venue={venue} />
+                </div>
             </div>
         </div>
     );

@@ -6,8 +6,12 @@ const useFormData = ({ initialState, submitAction }) => {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        const { name, value, type, checked } = e.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: type === "checkbox" ? checked : value, // Handle checkboxes as booleans
+        }));
     };
 
     const handleSubmit = async (e) => {
