@@ -48,17 +48,20 @@
 
 .searchResults {
     position: absolute;
-    top: calc(100% + 5px); /* Push slightly below the input */
+    top: 3.9rem;
     left: 0;
     right: 0;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 4px;
-    max-height: 200px;
+    max-height: 12rem;
     overflow-y: auto;
     z-index: 1000;
     margin-top: 0; /* Remove margin to avoid extra spacing */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
 }
 
 .searchResultItem {

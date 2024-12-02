@@ -31,12 +31,15 @@ const SearchBar = () => {
 
     // Handle input changes and filter venues
     const handleInputChange = (e) => {
-        const inputValue = e.target.value.trim();
+        const inputValue = e.target.value; // Do not trim or normalize here
         setSearchQuery(inputValue);
 
-        if (inputValue) {
+        if (inputValue.trim()) {
+            // Normalize only for filtering
             const matches = allVenues.filter((venue) =>
-                venue.name?.toLowerCase().includes(inputValue.toLowerCase())
+                venue.name
+                    ?.toLowerCase()
+                    .includes(inputValue.trim().toLowerCase())
             );
             console.log("Matches for query:", matches); // Debugging
             setSearchResults(matches); // Filter venues by name
@@ -76,23 +79,23 @@ const SearchBar = () => {
             </button>
 
             {/* Display search results */}
-            {searchQuery && (
+            {searchQuery && (searchResults.length > 0 || !selectedVenue) && (
                 <ul className={styles.searchResults}>
-                    {searchResults.length > 0 ? (
-                        searchResults.map((venue) => (
-                            <li
-                                key={venue.id}
-                                onClick={() => handleVenueClick(venue)}
-                                className={styles.searchResultItem}
-                            >
-                                {venue.name}
-                            </li>
-                        ))
-                    ) : (
-                        <li className={styles.noResults}>
-                            No venues found for "{searchQuery}"
-                        </li>
-                    )}
+                    {searchResults.length > 0
+                        ? searchResults.map((venue) => (
+                              <li
+                                  key={venue.id}
+                                  onClick={() => handleVenueClick(venue)}
+                                  className={styles.searchResultItem}
+                              >
+                                  {venue.name}
+                              </li>
+                          ))
+                        : !selectedVenue && (
+                              <li className={styles.noResults}>
+                                  No venues found for "{searchQuery}"
+                              </li>
+                          )}
                 </ul>
             )}
         </div>
