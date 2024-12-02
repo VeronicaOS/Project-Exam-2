@@ -4,7 +4,7 @@ import DetailsSection from "./detailsSection/detailsSection";
 import BookingSection from "./bookingSection/bookingSection";
 import FeaturesSection from "./featuresSection/featuresSection";
 import sharedStyles from "../styles.module.css";
-import { BASE_URL, API_KEY } from "../../api/constants";
+import { fetchVenueById } from "../../utils/fetchVenueDetails"; // Import the new function
 
 const VenueDetailsPage = () => {
     const { id } = useParams(); // Get the venue ID from the URL
@@ -14,23 +14,12 @@ const VenueDetailsPage = () => {
 
     useEffect(() => {
         const fetchVenue = async () => {
-            const endpoint = `/holidaze/venues/${id}`;
-            const url = BASE_URL + endpoint;
-            const token = localStorage.getItem("token");
-            const headers = {
-                Authorization: `Bearer ${token}`,
-                "X-Noroff-API-Key": API_KEY,
-            };
-
             try {
-                const response = await fetch(url, { method: "GET", headers });
-                if (!response.ok) {
-                    throw new Error("Failed to fetch venue data");
-                }
-                const data = await response.json();
-                setVenue(data.data); // Store venue data
+                const venueData = await fetchVenueById(id);
+                console.log("Fetched venue data:", venueData); // Log venue data for debugging
+                setVenue(venueData); // Store venue data
             } catch (err) {
-                console.error(err);
+                console.error("Error fetching venue:", err);
                 setError("Could not load venue details");
             } finally {
                 setLoading(false);
@@ -48,14 +37,16 @@ const VenueDetailsPage = () => {
         return <p>{error}</p>;
     }
 
+    // Safely extract bookings from venue data or default to an empty array
+    const bookings = venue?.bookings || [];
+
     return (
         <div className={sharedStyles.wrapper}>
             <div>
                 <DetailsSection venue={venue} />
-                <BookingSection venue={venue} />{" "}
-                {/* Pass venue data to Booking */}
-                <FeaturesSection venue={venue} />{" "}
-                {/* Pass venue data to Features */}
+                {/* Pass bookings directly to BookingSection */}
+                <BookingSection venueId={venue.id} bookings={bookings} />
+                <FeaturesSection venue={venue} />
             </div>
         </div>
     );

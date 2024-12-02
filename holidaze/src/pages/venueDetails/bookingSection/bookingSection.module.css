@@ -44,3 +44,9 @@
     margin-top: 10px;
     color: green;
 }
+
+.occupied {
+    background-color: red !important;
+    color: white !important;
+    pointer-events: none; /* Prevent clicks on occupied dates */
+}
