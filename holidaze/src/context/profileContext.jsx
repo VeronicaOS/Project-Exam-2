@@ -12,7 +12,7 @@ export const ProfileProvider = ({ children }) => {
     const fetchProfile = async (username, token) => {
         try {
             console.log("Fetching profile for:", username);
-            const url = `${BASE_URL}/holidaze/profiles/${username}?_bookings=true&_venues=true`;
+            const url = `${BASE_URL}/holidaze/profiles/${username}`;
             console.log("Fetching from URL:", url);
 
             const response = await fetch(url, {
@@ -28,6 +28,8 @@ export const ProfileProvider = ({ children }) => {
             }
 
             const result = await response.json();
+            console.log("API Response:", result);
+
             console.log("Profile fetched successfully:", result.data);
             setProfile(result.data);
             localStorage.setItem("profile", JSON.stringify(result.data));

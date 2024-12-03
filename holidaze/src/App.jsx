@@ -8,7 +8,7 @@ import RegisterPage from "./pages/register/register";
 import VenuesPage from "./pages/venueList/venuesPage";
 import VenueDetailsPage from "./pages/venueDetails/venueDetailsPage";
 import CreateVenuePage from "./pages/venueManager/createVenue/createVenue";
-import ManagerProfilePage from "./pages/venueManager/profile/profilePage";
+import ProfilePage from "./pages/profile/profilePage";
 // import ProductPage from "./pages/product/productPage";
 // import ContactPage from "./pages/contact/contact";
 // import CheckoutPage from "./pages/checkout/checkout";
@@ -34,10 +34,7 @@ function App() {
                             path="/create-venue"
                             element={<CreateVenuePage />}
                         />
-                        <Route
-                            path="/manager-profile"
-                            element={<ManagerProfilePage />}
-                        />
+                        <Route path="/my-profile" element={<ProfilePage />} />
                         {/* <Route path="/contact" element={<ContactPage />} />
                     <Route
                         path="/product/:productId"

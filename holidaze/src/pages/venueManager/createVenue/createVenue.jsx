@@ -84,7 +84,7 @@ const CreateVenuePage = () => {
                     console.log("Venue created successfully:", venueData);
 
                     // Redirect or show success message
-                    window.location.href = "/my-venues"; // Example redirect
+                    window.location.href = "/my-profile"; // Example redirect
                 } catch (err) {
                     console.error("Error creating venue:", err);
                 }
