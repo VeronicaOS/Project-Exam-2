@@ -1,7 +1,7 @@
 import { BASE_URL, API_KEY } from "../api/constants";
 
-export const fetchVenuesByProfile = async (profileName) => {
-    const endpoint = `/holidaze/profiles/${profileName}?_venues=true`;
+export const fetchProfileData = async (profileName) => {
+    const endpoint = `/holidaze/profiles/${profileName}?_venues=true&_bookings=true`;
     const url = BASE_URL + endpoint;
     const token = localStorage.getItem("token");
     const headers = {

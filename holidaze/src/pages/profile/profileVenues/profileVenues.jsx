@@ -1,73 +1,101 @@
 import React, { useEffect, useState } from "react";
 import { useProfile } from "../../../context/profileContext"; // Access the profile context
-import { fetchVenuesByProfile } from "../../../utils/fetchVenuesBookings"; // Fetch venues API function
+import { fetchProfileData } from "../../../utils/fetchProfileVenues"; // Fetch venues API function
+import { fetchVenueById } from "../../../utils/fetchVenueDetails"; // Fetch venue details (for bookings)
+import ViewBookingsModal from "../../venueManager/viewBookings/viewBookings"; // Modal for viewing bookings
+import UpdateVenueModal from "../../venueManager/updateVenue/updateVenue"; // Modal for updating venues
 import styles from "../profilePage.module.css";
+import { Link } from "react-router-dom";
 
 const VenuesSection = () => {
     const { profile } = useProfile(); // Get profile from the context
     const [venues, setVenues] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedVenue, setSelectedVenue] = useState(null); // For opening update modal
+    const [selectedBookings, setSelectedBookings] = useState([]); // Bookings for the selected venue
+    const [showBookingsModal, setShowBookingsModal] = useState(false); // Toggle bookings modal
 
     useEffect(() => {
         const fetchVenues = async () => {
             if (!profile?.name) {
-                console.error("Profile not found or invalid:", profile); // Debug Profile
                 setError("Profile not found");
                 setIsLoading(false);
                 return;
             }
-
             try {
-                // Debug Step 1: Log the profile name before fetching
-                console.log("Fetching venues for profile:", profile.name);
-
-                // Fetch venues from the API
-                const fetchedVenues = await fetchVenuesByProfile(profile.name);
-
-                // Debug Step 2: Log the fetched venues from API
-                console.log("Fetched venues from API:", fetchedVenues);
-
-                // Update the state with the fetched venues
+                const fetchedVenues = await fetchProfileData(profile.name);
                 setVenues(fetchedVenues);
-
-                // Debug Step 3: Log the venues after state update
-                console.log("Updated venues state:", fetchedVenues);
             } catch (err) {
-                console.error("Error fetching venues:", err);
-
-                // Set error state
                 setError(
                     err.message || "An error occurred while fetching venues."
                 );
             } finally {
-                // Debug Step 4: Confirm loading is finished
                 setIsLoading(false);
-                console.log("Loading finished, isLoading:", false);
             }
         };
-
         fetchVenues();
-    }, [profile]); // Re-run when profile changes
+    }, [profile]);
 
-    // Debug Step 5: Log the venues state before rendering
-    console.log("Venues state before rendering:", venues);
+    const handleUpdateVenue = (venue) => {
+        setSelectedVenue(venue); // Open modal with selected venue
+    };
 
-    // Conditional Rendering
+    const handleViewBookings = async (venue) => {
+        try {
+            // Debugging: Log the venue details
+            console.log("Selected venue for bookings:", venue);
+
+            if (!venue?.id) {
+                throw new Error("Invalid venue ID");
+            }
+
+            // Use existing bookings if available
+            if (venue.bookings && venue.bookings.length > 0) {
+                console.log(
+                    `Using existing bookings for venue ID: ${venue.id}`
+                );
+                setSelectedBookings(venue.bookings);
+            } else {
+                // Fetch detailed venue data if bookings are not already loaded
+                console.log(
+                    `Fetching detailed bookings for venue ID: ${venue.id}`
+                );
+                const detailedVenue = await fetchVenueById(venue.id);
+                console.log("Fetched detailed venue data:", detailedVenue);
+
+                setSelectedBookings(detailedVenue.bookings || []);
+            }
+            setShowBookingsModal(true); // Open bookings modal
+        } catch (err) {
+            console.error("Error fetching bookings:", err);
+            setError("Unable to load bookings.");
+        }
+    };
+
+    const handleModalClose = () => {
+        setSelectedVenue(null); // Close update modal
+        setSelectedBookings([]); // Close bookings modal
+        setShowBookingsModal(false);
+    };
+
+    const handleDeleteVenue = (venueId) => {
+        if (window.confirm("Are you sure you want to delete this venue?")) {
+            setVenues((prev) => prev.filter((venue) => venue.id !== venueId));
+            console.log(`Venue with ID ${venueId} deleted.`);
+        }
+    };
+
     if (isLoading) {
-        console.log("Currently loading venues...");
         return <p>Loading venues...</p>;
     }
     if (error) {
-        console.error("Rendering error message:", error);
         return <p className="error">{error}</p>;
     }
     if (venues.length === 0) {
-        console.log("No venues available for this profile.");
         return <p>No venues available.</p>;
     }
 
-    // Render Venues
     return (
         <div className={styles.venuesSection}>
             <h2 className={styles.venuesTitle}>Your Venues</h2>
@@ -81,18 +109,29 @@ const VenuesSection = () => {
                         />
                         <div className={styles.venueDetails}>
                             <h3 className={styles.venueName}>{venue.name}</h3>
-                            <p className={styles.venueDescription}>
-                                {venue.description ||
-                                    "No description available."}
-                            </p>
+                            <Link
+                                to={`/venues/${venue.id}`}
+                                className={styles.venueDescription}
+                            >
+                                View venue
+                            </Link>
                             <div className={styles.venueActions}>
-                                <button className={styles.actionButton}>
+                                <button
+                                    className={styles.actionButton}
+                                    onClick={() => handleUpdateVenue(venue)}
+                                >
                                     Update venue
                                 </button>
-                                <button className={styles.actionButton}>
+                                <button
+                                    className={styles.actionButton}
+                                    onClick={() => handleViewBookings(venue)}
+                                >
                                     View bookings
                                 </button>
-                                <button className={styles.actionButton}>
+                                <button
+                                    className={styles.actionButton}
+                                    onClick={() => handleDeleteVenue(venue.id)}
+                                >
                                     Delete venue
                                 </button>
                             </div>
@@ -100,6 +139,19 @@ const VenuesSection = () => {
                     </div>
                 ))}
             </div>
+            {selectedVenue && (
+                <UpdateVenueModal
+                    venue={selectedVenue}
+                    onClose={handleModalClose}
+                    onUpdate={() => console.log("Venue updated")} // Implement update logic
+                />
+            )}
+            {showBookingsModal && (
+                <ViewBookingsModal
+                    bookings={selectedBookings}
+                    onClose={handleModalClose}
+                />
+            )}
         </div>
     );
 };

@@ -45,6 +45,11 @@
     color: green;
 }
 
+.successMessage,
+.errorMessage {
+    width: 50%;
+}
+
 .occupied {
     background-color: red !important;
     color: white !important;
