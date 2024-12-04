@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { editProfile } from "../../../utils/editProfile"; // Import the utility function
 import styles from "../profilePage.module.css";
+import Button from "../../../components/button/button";
 
 const EditProfileModal = ({ profile, onClose, onUpdate }) => {
     const [formData, setFormData] = useState({
@@ -96,20 +97,20 @@ const EditProfileModal = ({ profile, onClose, onUpdate }) => {
                     </div>
                     {error && <p className={styles.error}>{error}</p>}
                     <div className={styles.actions}>
-                        <button
+                        <Button
                             type="button"
                             onClick={onClose}
                             className={styles.cancelButton}
                         >
                             Cancel
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                             type="submit"
                             className={styles.submitButton}
                             disabled={isUpdating}
                         >
                             {isUpdating ? "Updating..." : "Update Profile"}
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>

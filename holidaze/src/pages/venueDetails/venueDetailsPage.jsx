@@ -3,7 +3,6 @@ import { useProfile } from "../../context/profileContext";
 import { useParams } from "react-router-dom";
 import DetailsSection from "./detailsSection/detailsSection";
 import BookingSection from "./bookingSection/bookingSection";
-import FeaturesSection from "./featuresSection/featuresSection";
 import sharedStyles from "../styles.module.css";
 import { fetchVenueById } from "../../utils/fetchVenueDetails"; // Import the new function
 
@@ -51,7 +50,6 @@ const VenueDetailsPage = () => {
                     <DetailsSection venue={venue} />
                     {/* Pass bookings directly to BookingSection */}
                     <BookingSection venueId={venue.id} bookings={bookings} />
-                    <FeaturesSection venue={venue} />
                 </div>
             </div>
         </div>

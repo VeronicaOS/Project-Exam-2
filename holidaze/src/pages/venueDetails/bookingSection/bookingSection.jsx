@@ -3,6 +3,7 @@ import { API_KEY } from "../../../api/constants";
 import Calendar from "react-calendar"; // Calendar library
 import "react-calendar/dist/Calendar.css"; // Default styles for react-calendar
 import styles from "./bookingSection.module.css";
+import Button from "../../../components/button/button";
 
 const BookingSection = ({ venueId, bookings = [] }) => {
     const [selectedDates, setSelectedDates] = useState([null, null]); // Array for date range
@@ -169,29 +170,33 @@ const BookingSection = ({ venueId, bookings = [] }) => {
             </div>
             <div className={styles.bookingDetails}>
                 <h3>Booking Details</h3>
-                <label>
-                    Guests:
-                    <input
-                        type="number"
-                        min="1"
-                        value={guests}
-                        onChange={(e) => setGuests(Number(e.target.value))} // Allow dynamic input
-                        className={styles.input}
-                    />
-                </label>
-                <button
-                    onClick={handleBooking}
-                    disabled={isBooking}
-                    className={styles.bookButton}
-                >
-                    {isBooking ? "Booking..." : "Book Now"}
-                </button>
-                {successMessage && (
-                    <p className={styles.successMessage}>{successMessage}</p>
-                )}
-                {errorMessage && (
-                    <p className={styles.errorMessage}>{errorMessage}</p>
-                )}
+                <div className={styles.bookingGuests}>
+                    <label>
+                        Guests:
+                        <input
+                            type="number"
+                            min="1"
+                            value={guests}
+                            onChange={(e) => setGuests(Number(e.target.value))} // Allow dynamic input
+                            className={styles.input}
+                        />
+                    </label>
+                    <Button
+                        onClick={handleBooking}
+                        disabled={isBooking}
+                        className={styles.bookButton}
+                    >
+                        {isBooking ? "Booking..." : "Book Now"}
+                    </Button>
+                    {successMessage && (
+                        <p className={styles.successMessage}>
+                            {successMessage}
+                        </p>
+                    )}
+                    {errorMessage && (
+                        <p className={styles.errorMessage}>{errorMessage}</p>
+                    )}
+                </div>
             </div>
         </section>
     );

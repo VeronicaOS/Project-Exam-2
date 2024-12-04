@@ -46,9 +46,6 @@ const ProfileMenu = () => {
         return profile.venueManager ? (
             <>
                 <li>
-                    <a href="/dashboard">Dashboard</a>
-                </li>
-                <li>
                     <a href="/create-venue">Create Venue</a>
                 </li>
                 <li>
@@ -62,9 +59,6 @@ const ProfileMenu = () => {
             </>
         ) : (
             <>
-                <li>
-                    <a href="/bookings">My Bookings</a>
-                </li>
                 <li>
                     <a href="/my-profile">My Profile</a>
                 </li>

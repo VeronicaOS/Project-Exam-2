@@ -1,11 +1,31 @@
 import React from "react";
 import styles from "./featuresSection.module.css";
 
-const FeaturesSection = () => {
+const FeaturesSection = ({ venue }) => {
+    const { meta } = venue || {}; // Destructure meta from venue
+
     return (
-        <section className={styles.extraDetailsSection}>
-            <p>Additional venue details will go here.</p>
-        </section>
+        <div className={styles.venueFeatures}>
+            <div className={styles.metaInfo}>
+                <h2>Amenities</h2>
+                <ul>
+                    <li>
+                        <strong>Breakfast:</strong>{" "}
+                        {meta?.breakfast ? "Yes" : "No"}
+                    </li>
+                    <li>
+                        <strong>Parking:</strong> {meta?.parking ? "Yes" : "No"}
+                    </li>
+                    <li>
+                        <strong>Pets Allowed:</strong>{" "}
+                        {meta?.pets ? "Yes" : "No"}
+                    </li>
+                    <li>
+                        <strong>WiFi:</strong> {meta?.wifi ? "Yes" : "No"}
+                    </li>
+                </ul>
+            </div>
+        </div>
     );
 };
 

@@ -85,20 +85,20 @@ const BookingsSection = () => {
                                 {booking.venue?.name || "Venue Name"}
                             </h3>
                             <p>
-                                <strong>Check-in:</strong>{" "}
+                                <strong>Check-in: </strong>
                                 {new Date(
                                     booking.dateFrom
                                 ).toLocaleDateString()}
                             </p>
                             <p>
-                                <strong>Check-out:</strong>{" "}
+                                <strong>Check-out: </strong>
                                 {new Date(booking.dateTo).toLocaleDateString()}
                             </p>
                             <p>
-                                <strong>Guests:</strong> {booking.guests}
+                                <strong>Guests: </strong> {booking.guests}
                             </p>
                             <p>
-                                <strong>Venue:</strong>{" "}
+                                <strong>Venue: </strong>
                                 {booking.venue?.name || "Venue Name"}
                             </p>
                         </div>

@@ -4,6 +4,7 @@ import useFormData from "../../login/formData/formData";
 import VenueForm from "./venueForm/venueForm";
 import { BASE_URL, API_KEY } from "../../../api/constants"; // Import API key and base URL
 import styles from "./createVenuePage.module.css";
+import Button from "../../../components/button/button";
 
 const CreateVenuePage = () => {
     const { formData, handleChange, handleSubmit, isLoading, error } =
@@ -94,13 +95,13 @@ const CreateVenuePage = () => {
                         error={error}
                     />
                     {/* Submit Button */}
-                    <button
+                    <Button
                         type="submit"
                         className={styles.button}
                         disabled={isLoading}
                     >
                         {isLoading ? "Creating..." : "Create Venue"}
-                    </button>
+                    </Button>
                 </form>
             </div>
         </div>

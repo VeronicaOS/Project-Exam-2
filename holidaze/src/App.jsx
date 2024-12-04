@@ -35,16 +35,6 @@ function App() {
                             element={<CreateVenuePage />}
                         />
                         <Route path="/my-profile" element={<ProfilePage />} />
-                        {/* <Route path="/contact" element={<ContactPage />} />
-                    <Route
-                        path="/product/:productId"
-                        element={<ProductPage />}
-                    />
-                    <Route path="/checkout" element={<CheckoutPage />} />
-                    <Route
-                        path="/checkout-success"
-                        element={<CheckoutSuccessPage />}
-                    /> */}
                     </Routes>
                 </Layout>
             </Router>

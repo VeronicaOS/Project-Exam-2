@@ -26,7 +26,7 @@
 .heading1,
 .heading2 {
     font-size: 1.8rem;
-    color: #ff6600;
+    color: #3e8e65;
     text-align: center;
 }
 
@@ -78,7 +78,7 @@
 .button {
     width: 100%;
     padding: 10px;
-    background-color: #ff6600;
+    background-color: #3e8e65;
     color: white;
     border: none;
     border-radius: 5px;
@@ -91,6 +91,6 @@
 }
 
 .linkText {
-    color: #ff6600;
+    color: #3e8e65;
     text-decoration: none;
 }

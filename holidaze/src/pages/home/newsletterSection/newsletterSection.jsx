@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./newsletterSection.module.css";
 import sharedStyles from "../../styles.module.css";
+import flight from "../../../assets/images/newsletter/newsletterImage.jpg";
+import Button from "../../../components/button/button";
 
 const NewsletterSection = () => {
     return (
@@ -17,12 +19,11 @@ const NewsletterSection = () => {
                             type="email"
                             placeholder="Enter your email address"
                         />
-                        <button>Sign up</button>
+                        <Button>Sign up</Button>
                     </div>
                 </div>
-                <div>
-                    <img src="" alt="" />
-                    <img src="" alt="" />
+                <div className={styles.imageContainer}>
+                    <img src={flight} alt="Airplaine in the sky" />
                 </div>
             </section>
         </div>

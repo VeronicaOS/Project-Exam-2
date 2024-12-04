@@ -4,6 +4,7 @@ import VenueCard from "../../components/cards/venuesCard/venuesCard";
 import { fetchVenues } from "../../utils/fetchVenues"; // Import the utility function
 import styles from "./venuesPage.module.css";
 import sharedStyles from "../styles.module.css";
+import Button from "../../components/button/button";
 
 const VenuesPage = () => {
     const { profile } = useProfile();
@@ -71,9 +72,9 @@ const VenuesPage = () => {
                 </div>
                 {/* Show Load More button if there are more venues to load */}
                 {visibleVenues.length < venues.length && (
-                    <button onClick={loadMore} className={styles.loadMore}>
+                    <Button onClick={loadMore} className={styles.loadMore}>
                         Load More
-                    </button>
+                    </Button>
                 )}
             </div>
         </div>

@@ -57,19 +57,11 @@ legend {
 }
 
 .button {
-    width: 100%;
-    padding: 12px;
-    background-color: #f68026;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: #3e8e65;
 }
 
 .button:hover {
-    background-color: #e5701d;
+    background-color: #2a6245;
 }
 
 .button:disabled {
@@ -129,9 +121,12 @@ a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
+/* MEDIA QUERIES MOBILE & IPAD */
+
+@media only screen and (min-width: 0px) and (max-width: 1180px) {
     .formWrapper {
         padding: 20px;
+        width: auto;
     }
 
     .heading1 {

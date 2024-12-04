@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { updateVenue } from "../../../utils/updateVenue";
 import styles from "./updateVenue.module.css"; // Add styles for your modal
 import VenueForm from "../createVenue/venueForm/venueForm";
+import Button from "../../../components/button/button";
 
 const UpdateVenueModal = ({ venue, onClose, onUpdate }) => {
     const [formData, setFormData] = useState({
@@ -103,20 +104,20 @@ const UpdateVenueModal = ({ venue, onClose, onUpdate }) => {
                         error={error}
                     />
                     <div className={styles.actions}>
-                        <button
+                        <Button
                             type="button"
                             onClick={onClose}
                             className={styles.cancelButton}
                         >
                             Cancel
-                        </button>
-                        <button
+                        </Button>
+                        <Button
                             type="submit"
                             className={styles.submitButton}
                             disabled={isUpdating}
                         >
                             {isUpdating ? "Updating..." : "Update Venue"}
-                        </button>
+                        </Button>
                     </div>
                 </form>
             </div>

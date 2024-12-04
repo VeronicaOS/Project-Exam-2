@@ -46,13 +46,20 @@
 }
 
 .submitButton {
-    background-color: #4caf50;
-    color: white;
+    background-color: #3e8e65;
+}
+
+.submitButton:hover {
+    background-color: #2a6245;
 }
 
 .cancelButton {
-    background-color: #f44336;
-    color: white;
+    background-color: #ddd;
+    color: #333;
+}
+
+.cancelButton:hover {
+    background-color: #bdbdbd;
 }
 
 /* Prevent page scrolling when modal is open */

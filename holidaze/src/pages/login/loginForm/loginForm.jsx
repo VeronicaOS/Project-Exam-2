@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../login.module.css";
+import Button from "../../../components/button/button";
 
 const LoginForm = ({ formData, handleChange, isLoading, error }) => {
     return (
@@ -43,13 +44,13 @@ const LoginForm = ({ formData, handleChange, isLoading, error }) => {
             {error && <p className={styles.error}>{error}</p>}
 
             {/* Submit Button */}
-            <button
+            <Button
                 type="submit"
                 className={styles.button}
                 disabled={isLoading}
             >
                 {isLoading ? "Logging in..." : "Log In"}
-            </button>
+            </Button>
 
             {/* Forgot Password and Register Links */}
             <p className={styles.link}>

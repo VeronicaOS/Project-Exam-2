@@ -203,6 +203,7 @@
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
+    box-sizing: border-box;
     border-radius: 4px;
 }
 
@@ -212,29 +213,49 @@
 }
 
 .cancelButton {
-    background-color: #ccc;
-    color: black;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: #ddd;
+    color: #333;
+}
+
+.cancelButton:hover {
+    background-color: #bdbdbd;
 }
 
 .submitButton {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    background-color: #3e8e65;
+}
+
+.submitButton:hover {
+    background-color: #2a6245;
 }
 
 .submitButton:disabled {
-    background-color: #d3d3d3;
+    background-color: #9e938a;
     cursor: not-allowed;
 }
 
 .error {
     color: red;
     margin-bottom: 10px;
+}
+
+/* MEDIA QUERIES MOBILE */
+@media only screen and (min-width: 0px) and (max-width: 767px) {
+    .profileCard {
+        width: auto;
+    }
+    .bookingCard {
+        width: auto;
+    }
+    .venuesBookingsList {
+        padding: 2rem 0;
+    }
+    .bookingsGrid,
+    .venuesGrid {
+        padding: 0;
+    }
+    .bookingsTitle,
+    .venuesTitle {
+        margin: 0 0 1rem 0;
+    }
 }
