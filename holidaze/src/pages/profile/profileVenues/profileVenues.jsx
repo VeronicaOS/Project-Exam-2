@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useProfile } from "../../../context/profileContext"; // Access the profile context
-import { fetchProfileData } from "../../../utils/fetchProfileVenues"; // Fetch venues API function
+import { fetchProfileVenues } from "../../../utils/fetchProfileVenues"; // Fetch venues API function
 import { fetchVenueById } from "../../../utils/fetchVenueDetails"; // Fetch venue details (for bookings)
 import ViewBookingsModal from "../../venueManager/viewBookings/viewBookings"; // Modal for viewing bookings
 import UpdateVenueModal from "../../venueManager/updateVenue/updateVenue"; // Modal for updating venues
@@ -27,8 +27,8 @@ const VenuesSection = () => {
                 return;
             }
             try {
-                const fetchedVenues = await fetchProfileData(profile.name);
-                setVenues(fetchedVenues);
+                const venues = await fetchProfileVenues(profile.name); // Fetch venues only
+                setVenues(Array.isArray(venues) ? venues : []); // Ensure venues is an array
             } catch (err) {
                 setError(
                     err.message || "An error occurred while fetching venues."
@@ -55,7 +55,7 @@ const VenuesSection = () => {
             console.log("Venue updated:", updatedVenue);
 
             // Refetch the list of venues
-            const refreshedVenues = await fetchProfileData(profile.name);
+            const refreshedVenues = await fetchProfileVenues(profile.name);
             setVenues(refreshedVenues);
 
             // Close the modal

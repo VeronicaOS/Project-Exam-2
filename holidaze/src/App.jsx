@@ -7,7 +7,7 @@ import LoginPage from "./pages/login/login";
 import RegisterPage from "./pages/register/register";
 import VenuesPage from "./pages/venueList/venuesPage";
 import VenueDetailsPage from "./pages/venueDetails/venueDetailsPage";
-import CreateVenuePage from "./pages/venueManager/createVenue/createVenue";
+import CreateVenuePage from "./pages/venueManager/createVenue/createVenuePage";
 import ProfilePage from "./pages/profile/profilePage";
 // import ProductPage from "./pages/product/productPage";
 // import ContactPage from "./pages/contact/contact";

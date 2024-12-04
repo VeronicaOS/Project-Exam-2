@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
+import { useProfile } from "../../context/profileContext";
 import VenueCard from "../../components/cards/venuesCard/venuesCard";
 import { fetchVenues } from "../../utils/fetchVenues"; // Import the utility function
 import styles from "./venuesPage.module.css";
 import sharedStyles from "../styles.module.css";
 
 const VenuesPage = () => {
+    const { profile } = useProfile();
     const [venues, setVenues] = useState([]); // All fetched venues
     const [visibleVenues, setVisibleVenues] = useState([]); // Venues currently displayed
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1); // Current page number
     const ITEMS_PER_PAGE = 12; // Number of venues to display per load
+
+    useEffect(() => {}, [profile]);
 
     // Fetch venues on mount
     useEffect(() => {

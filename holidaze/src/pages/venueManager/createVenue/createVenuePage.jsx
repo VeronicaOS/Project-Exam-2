@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useProfile } from "../../../context/profileContext";
 import useFormData from "../../login/formData/formData";
 import VenueForm from "./venueForm/venueForm";
 import { BASE_URL, API_KEY } from "../../../api/constants"; // Import API key and base URL
-import styles from "./createVenue.module.css";
+import styles from "./createVenuePage.module.css";
 
 const CreateVenuePage = () => {
     const { formData, handleChange, handleSubmit, isLoading, error } =
@@ -80,6 +81,8 @@ const CreateVenuePage = () => {
                 }
             },
         });
+    const { profile } = useProfile();
+    useEffect(() => {}, [profile]);
 
     return (
         <div className={styles.container}>

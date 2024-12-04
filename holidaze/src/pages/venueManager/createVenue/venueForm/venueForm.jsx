@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../createVenue.module.css";
+import styles from "../createVenuePage.module.css";
 
 const VenueForm = ({ formData, handleChange, error }) => {
     return (

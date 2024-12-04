@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useProfile } from "../../context/profileContext";
 import { useParams } from "react-router-dom";
 import DetailsSection from "./detailsSection/detailsSection";
 import BookingSection from "./bookingSection/bookingSection";
@@ -7,10 +8,13 @@ import sharedStyles from "../styles.module.css";
 import { fetchVenueById } from "../../utils/fetchVenueDetails"; // Import the new function
 
 const VenueDetailsPage = () => {
+    const { profile } = useProfile(); // Access the profile from ProfileContext
     const { id } = useParams(); // Get the venue ID from the URL
     const [venue, setVenue] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    useEffect(() => {}, [profile]);
 
     useEffect(() => {
         const fetchVenue = async () => {
