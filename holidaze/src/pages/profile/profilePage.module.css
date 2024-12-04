@@ -64,13 +64,15 @@
     margin: 2rem 0;
 }
 
-.venuesTitle {
+.venuesTitle,
+.bookingsTitle {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 2rem;
 }
 
-.venuesGrid {
+.venuesGrid,
+.bookingsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
@@ -78,7 +80,8 @@
     justify-items: center;
 }
 
-.venueCard {
+.venueCard,
+.bookingCard {
     display: flex;
     flex-direction: column;
     background-color: #f9f9f9;
@@ -90,7 +93,8 @@
     width: 300px;
 }
 
-.venueCard:hover {
+.venueCard:hover,
+.bookingCard:hover {
     transform: scale(1.02);
 }
 
@@ -100,11 +104,16 @@
     object-fit: cover;
 }
 
-.venueDetails {
+.venueDetails,
+.bookingDetails {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+}
+
+.bookingDetails p {
+    margin: 0;
 }
 
 .venueName {
