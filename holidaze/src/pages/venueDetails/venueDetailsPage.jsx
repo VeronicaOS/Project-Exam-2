@@ -14,6 +14,9 @@ const VenueDetailsPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {}, [profile]);
+    useEffect(() => {
+        document.title = "Holidaze - Venue details Page";
+    }, []);
 
     useEffect(() => {
         const fetchVenue = async () => {

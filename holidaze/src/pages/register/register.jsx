@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useFormData from "../login/formData/formData";
 import RegisterForm from "./registerForm/registerForm";
 import styles from "./register.module.css";
 
 const RegisterPage = () => {
+    useEffect(() => {
+        document.title = "Holidaze - Register Page";
+    }, []);
     const { formData, handleChange, handleSubmit, isLoading, error } =
         useFormData({
             initialState: {

@@ -84,9 +84,13 @@ const CreateVenuePage = () => {
         });
     const { profile } = useProfile();
     useEffect(() => {}, [profile]);
+    useEffect(() => {
+        document.title = "Holidaze - Create Venue Page";
+    }, []);
 
     return (
-        <div className={styles.container}>
+        <div className={styles.createVenueContainer}>
+            <h1>Create your venue</h1>
             <div className={styles.formWrapper}>
                 <form onSubmit={handleSubmit} className={styles.form}>
                     <VenueForm

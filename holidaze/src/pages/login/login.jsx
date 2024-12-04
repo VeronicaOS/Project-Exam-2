@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFormData from "./formData/formData";
 import LoginForm from "./loginForm/loginForm";
 import { useProfile } from "../../context/profileContext";
@@ -8,6 +8,10 @@ import styles from "./login.module.css";
 const LoginPage = () => {
     const { fetchProfile } = useProfile();
     const [errorMessage, setErrorMessage] = useState(""); // State for error message
+
+    useEffect(() => {
+        document.title = "Holidaze - Login Page";
+    }, []);
 
     const { formData, handleChange, handleSubmit, isLoading } = useFormData({
         initialState: { email: "", password: "" },

@@ -17,6 +17,10 @@ const VenuesPage = () => {
 
     useEffect(() => {}, [profile]);
 
+    useEffect(() => {
+        document.title = "Holidaze - Venues Page";
+    }, []);
+
     // Fetch venues on mount
     useEffect(() => {
         const loadVenues = async () => {
@@ -57,7 +61,7 @@ const VenuesPage = () => {
     return (
         <div className={styles.container}>
             <div className={sharedStyles.wrapper}>
-                <h2 className={styles.heading}>Our Venues</h2>
+                <h1 className={styles.heading}>Our Venues</h1>
                 <div className={styles.grid}>
                     {visibleVenues.map((venue) => (
                         <VenueCard

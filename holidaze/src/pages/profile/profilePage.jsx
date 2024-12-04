@@ -15,6 +15,10 @@ const ProfilePage = () => {
     const [successMessage, setSuccessMessage] = useState(""); // Success message state
 
     useEffect(() => {
+        document.title = "Holidaze - Profile Page";
+    }, []);
+
+    useEffect(() => {
         const fetchData = async () => {
             if (!profile || !profile.name) {
                 console.log("Fetching profile for username:", username);
@@ -46,9 +50,9 @@ const ProfilePage = () => {
             <div className={`${styles.container} ${sharedStyles.mainPadding}`}>
                 {/* Profile Information */}
                 <div className={styles.profileCard}>
-                    <h2 className={styles.profileName}>
+                    <h1 className={styles.profileName}>
                         {profile?.name || "Name"}
-                    </h2>
+                    </h1>
                     <img
                         src={profile?.avatar.url}
                         alt={`${profile?.name}'s avatar`}
