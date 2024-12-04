@@ -1,49 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ProfileMenu from "../profileMenu/profileMenu";
 import styles from "./header.module.css";
-import logoImage from "../../assets/images/logo/holidaze-logo.png";
+import logoImage from "../../assets/images/logo/holidazeLogo.png";
+import sharedStyles from "../../pages/styles.module.css";
 
 const Header = () => {
-    const [isNavActive, setIsNavActive] = useState(false);
-
-    const toggleNav = () => {
-        setIsNavActive(!isNavActive);
-    };
-
     return (
-        <header className={styles.header}>
-            <div className={styles.logo}>
-                <img
-                    src={logoImage}
-                    alt="Holidaze logo"
-                    className={styles.logoImage}
-                />
-            </div>
-            <nav
-                className={`${styles.nav} ${isNavActive ? styles.active : ""}`}
-                id="nav"
-            >
-                <Link className={styles.link}>Home</Link>
-                <Link to="/" className={styles.link}>
-                    Venues
+        <div className={sharedStyles.wrapper}>
+            <header className={styles.header}>
+                <Link to="/" className={styles.logo}>
+                    <img
+                        src={logoImage}
+                        alt="Holidaze logo"
+                        className={styles.logoImage}
+                    />
                 </Link>
-                <Link to="/contact" className={styles.link}>
-                    Manage Venues
-                </Link>
-            </nav>
-            <div>
-                <button className={styles.logbutton}>Log in</button>
-            </div>
-            <div
-                className={styles.hamburger}
-                id="hamburger"
-                onClick={toggleNav}
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </header>
+                <div className={styles.headerNav}>
+                    <Link to="/venues" className={styles.link}>
+                        Venues
+                    </Link>
+                    {/* Add DropdownMenu here */}
+                    <ProfileMenu />
+                </div>
+            </header>
+        </div>
     );
 };
 

@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HeroSection from "./heroSection/heroSection";
-// import FavoritesSection from "../components/FavoritesSection";
-// import SignupSection from "../components/SignupSection";
-// import PetFriendlySection from "../components/PetFriendlySection";
-import styles from "./homePage.module.css";
+import NewsletterSection from "./newsletterSection/newsletterSection";
+import PetSection from "./petSection/petSection";
+import { useProfile } from "../../context/profileContext";
 
 const HomePage = () => {
+    const { profile } = useProfile();
+
+    useEffect(() => {
+        document.title = "Holidaze - Home Page";
+    }, []);
+    useEffect(() => {}, [profile]);
+
     return (
-        <div className={styles.container}>
+        <div>
             <HeroSection />
-            {/* <FavoritesSection />
-            <SignupSection />
-            <PetFriendlySection /> */}
+            <NewsletterSection />
+            <PetSection />
         </div>
     );
 };
