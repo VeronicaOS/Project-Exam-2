@@ -7,6 +7,7 @@ import UpdateVenueModal from "../../venueManager/updateVenue/updateVenue"; // Mo
 import styles from "../profilePage.module.css";
 import { Link } from "react-router-dom";
 import Button from "../../../components/button/button";
+import { deleteVenue } from "../../../utils/deleteVenue";
 
 const VenuesSection = () => {
     const { profile } = useProfile(); // Get profile from the context
@@ -60,7 +61,6 @@ const VenuesSection = () => {
             // Close the modal
             setSelectedVenue(null);
             setSuccessMessage("Venue updated successfully!"); // Show success message
-            setTimeout(() => setSuccessMessage(""), 5000); // Hide after 5 seconds
         } catch (err) {
             console.error("Error refreshing venues:", err);
             setError("Unable to refresh venue data.");
@@ -99,10 +99,19 @@ const VenuesSection = () => {
         setShowBookingsModal(false);
     };
 
-    const handleDeleteVenue = (venueId) => {
+    const handleDeleteVenue = async (venueId) => {
         if (window.confirm("Are you sure you want to delete this venue?")) {
-            setVenues((prev) => prev.filter((venue) => venue.id !== venueId));
-            console.log(`Venue with ID ${venueId} deleted.`);
+            try {
+                const deleteSuccess = await deleteVenue(venueId);
+                if (deleteSuccess) {
+                    setVenues((prev) =>
+                        prev.filter((venue) => venue.id !== venueId)
+                    );
+                    setSuccessMessage("Venue deleted successfully!");
+                }
+            } catch (error) {
+                setError(error.message || "Failed to delete venue.");
+            }
         }
     };
 
