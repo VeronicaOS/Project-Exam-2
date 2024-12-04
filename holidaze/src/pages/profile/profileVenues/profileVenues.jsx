@@ -6,6 +6,7 @@ import ViewBookingsModal from "../../venueManager/viewBookings/viewBookings"; //
 import UpdateVenueModal from "../../venueManager/updateVenue/updateVenue"; // Modal for updating venues
 import styles from "../profilePage.module.css";
 import { Link } from "react-router-dom";
+import Button from "../../../components/button/button";
 
 const VenuesSection = () => {
     const { profile } = useProfile(); // Get profile from the context
@@ -15,6 +16,7 @@ const VenuesSection = () => {
     const [selectedVenue, setSelectedVenue] = useState(null); // For opening update modal
     const [selectedBookings, setSelectedBookings] = useState([]); // Bookings for the selected venue
     const [showBookingsModal, setShowBookingsModal] = useState(false); // Toggle bookings modal
+    const [successMessage, setSuccessMessage] = useState("");
 
     useEffect(() => {
         const fetchVenues = async () => {
@@ -37,36 +39,54 @@ const VenuesSection = () => {
         fetchVenues();
     }, [profile]);
 
-    const handleUpdateVenue = (venue) => {
-        setSelectedVenue(venue); // Open modal with selected venue
+    useEffect(() => {
+        if (successMessage) {
+            const timeout = setTimeout(() => {
+                setSuccessMessage(""); // Clear the success message after 3 seconds
+            }, 1500);
+
+            return () => clearTimeout(timeout); // Cleanup the timeout on unmount
+        }
+    }, [successMessage]);
+
+    const handleUpdateVenue = async (updatedVenue) => {
+        try {
+            console.log("Venue updated:", updatedVenue);
+
+            // Refetch the list of venues
+            const refreshedVenues = await fetchProfileData(profile.name);
+            setVenues(refreshedVenues);
+
+            // Close the modal
+            setSelectedVenue(null);
+            setSuccessMessage("Venue updated successfully!"); // Show success message
+            setTimeout(() => setSuccessMessage(""), 5000); // Hide after 5 seconds
+        } catch (err) {
+            console.error("Error refreshing venues:", err);
+            setError("Unable to refresh venue data.");
+        }
     };
 
     const handleViewBookings = async (venue) => {
         try {
-            // Debugging: Log the venue details
             console.log("Selected venue for bookings:", venue);
 
             if (!venue?.id) {
                 throw new Error("Invalid venue ID");
             }
 
-            // Use existing bookings if available
             if (venue.bookings && venue.bookings.length > 0) {
                 console.log(
                     `Using existing bookings for venue ID: ${venue.id}`
                 );
                 setSelectedBookings(venue.bookings);
             } else {
-                // Fetch detailed venue data if bookings are not already loaded
-                console.log(
-                    `Fetching detailed bookings for venue ID: ${venue.id}`
-                );
                 const detailedVenue = await fetchVenueById(venue.id);
                 console.log("Fetched detailed venue data:", detailedVenue);
 
                 setSelectedBookings(detailedVenue.bookings || []);
             }
-            setShowBookingsModal(true); // Open bookings modal
+            setShowBookingsModal(true);
         } catch (err) {
             console.error("Error fetching bookings:", err);
             setError("Unable to load bookings.");
@@ -74,8 +94,8 @@ const VenuesSection = () => {
     };
 
     const handleModalClose = () => {
-        setSelectedVenue(null); // Close update modal
-        setSelectedBookings([]); // Close bookings modal
+        setSelectedVenue(null);
+        setSelectedBookings([]);
         setShowBookingsModal(false);
     };
 
@@ -99,6 +119,14 @@ const VenuesSection = () => {
     return (
         <div className={styles.venuesSection}>
             <h2 className={styles.venuesTitle}>Your Venues</h2>
+            {successMessage && (
+                <div className={styles.successMessageOverlay}>
+                    <div className={styles.successMessage}>
+                        {successMessage}
+                    </div>
+                </div>
+            )}
+
             <div className={styles.venuesGrid}>
                 {venues.map((venue) => (
                     <div key={venue.id} className={styles.venueCard}>
@@ -116,24 +144,24 @@ const VenuesSection = () => {
                                 View venue
                             </Link>
                             <div className={styles.venueActions}>
-                                <button
+                                <Button
                                     className={styles.actionButton}
-                                    onClick={() => handleUpdateVenue(venue)}
+                                    onClick={() => setSelectedVenue(venue)}
                                 >
                                     Update venue
-                                </button>
-                                <button
+                                </Button>
+                                <Button
                                     className={styles.actionButton}
                                     onClick={() => handleViewBookings(venue)}
                                 >
                                     View bookings
-                                </button>
-                                <button
+                                </Button>
+                                <Button
                                     className={styles.actionButton}
                                     onClick={() => handleDeleteVenue(venue.id)}
                                 >
                                     Delete venue
-                                </button>
+                                </Button>
                             </div>
                         </div>
                     </div>
@@ -143,7 +171,7 @@ const VenuesSection = () => {
                 <UpdateVenueModal
                     venue={selectedVenue}
                     onClose={handleModalClose}
-                    onUpdate={() => console.log("Venue updated")} // Implement update logic
+                    onUpdate={handleUpdateVenue}
                 />
             )}
             {showBookingsModal && (

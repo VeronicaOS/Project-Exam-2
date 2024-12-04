@@ -1,6 +1,6 @@
 import React from "react";
 import useFormData from "../../login/formData/formData";
-import CreateVenueForm from "./venueForm/venueForm";
+import VenueForm from "./venueForm/venueForm";
 import { BASE_URL, API_KEY } from "../../../api/constants"; // Import API key and base URL
 import styles from "./createVenue.module.css";
 
@@ -33,7 +33,6 @@ const CreateVenuePage = () => {
                     "X-Noroff-API-Key": API_KEY,
                 };
 
-                // Prepare the object being sent to the API
                 const requestBody = {
                     name: formData.name,
                     description: formData.description,
@@ -61,13 +60,8 @@ const CreateVenuePage = () => {
                         continent: formData.continent || null,
                     },
                 };
-                console.log("Final Payload:", requestBody);
 
                 try {
-                    // Log the request body for debugging
-                    console.log("Request Headers:", headers);
-                    console.log("Request Body:", requestBody);
-
                     const response = await fetch(url, {
                         method: "POST",
                         headers,
@@ -75,16 +69,12 @@ const CreateVenuePage = () => {
                     });
 
                     if (!response.ok) {
-                        const errorResponse = await response.json();
-                        console.error("API Error Response:", errorResponse);
                         throw new Error("Failed to create the venue.");
                     }
 
                     const venueData = await response.json();
                     console.log("Venue created successfully:", venueData);
-
-                    // Redirect or show success message
-                    window.location.href = "/my-profile"; // Example redirect
+                    window.location.href = "/my-profile"; // Redirect
                 } catch (err) {
                     console.error("Error creating venue:", err);
                 }
@@ -95,12 +85,19 @@ const CreateVenuePage = () => {
         <div className={styles.container}>
             <div className={styles.formWrapper}>
                 <form onSubmit={handleSubmit} className={styles.form}>
-                    <CreateVenueForm
+                    <VenueForm
                         formData={formData}
                         handleChange={handleChange}
-                        isLoading={isLoading}
                         error={error}
                     />
+                    {/* Submit Button */}
+                    <button
+                        type="submit"
+                        className={styles.button}
+                        disabled={isLoading}
+                    >
+                        {isLoading ? "Creating..." : "Create Venue"}
+                    </button>
                 </form>
             </div>
         </div>

@@ -1,30 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { fetchVenueById } from "../../../utils/fetchVenueDetails"; // Import the function to fetch venue details
+import React from "react";
 import styles from "./viewBookings.module.css"; // Add a CSS file for modal styles
+import Button from "../../../components/button/button";
 
 const ViewBookingsModal = ({ bookings, onClose }) => {
-    const [error, setError] = useState(null);
-
-    if (error) {
-        return (
-            <div className={styles.modal}>
-                <div className={styles.modalContent}>
-                    <h2>Error</h2>
-                    <p>{error}</p>
-                    <div className={styles.actions}>
-                        <button
-                            type="button"
-                            onClick={onClose}
-                            className={styles.closeButton}
-                        >
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
     return (
         <div className={styles.modal}>
             <div className={styles.modalContent}>
@@ -36,6 +14,9 @@ const ViewBookingsModal = ({ bookings, onClose }) => {
                                 key={booking.id}
                                 className={styles.bookingCard}
                             >
+                                <p className={styles.userName}>
+                                    {booking.customer?.name || "N/A"}
+                                </p>
                                 <p>
                                     <strong>Check-in:</strong>{" "}
                                     {new Date(
@@ -52,10 +33,6 @@ const ViewBookingsModal = ({ bookings, onClose }) => {
                                     <strong>Guests:</strong> {booking.guests}
                                 </p>
                                 <p>
-                                    <strong>Customer:</strong>{" "}
-                                    {booking.customer?.name || "N/A"}
-                                </p>
-                                <p>
                                     <strong>Email:</strong>{" "}
                                     {booking.customer?.email || "N/A"}
                                 </p>
@@ -66,13 +43,13 @@ const ViewBookingsModal = ({ bookings, onClose }) => {
                     <p>No bookings available for this venue.</p>
                 )}
                 <div className={styles.actions}>
-                    <button
+                    <Button
                         type="button"
                         onClick={onClose}
                         className={styles.closeButton}
                     >
                         Close
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>

@@ -1,11 +1,9 @@
 import React from "react";
 import styles from "../createVenue.module.css";
 
-const CreateVenueForm = ({ formData, handleChange, isLoading, error }) => {
+const VenueForm = ({ formData, handleChange, error }) => {
     return (
         <>
-            <h1 className={styles.heading1}>Create Your Venue</h1>
-
             {/* Name Input */}
             <div className={styles.inputGroup}>
                 <label htmlFor="name" className={styles.label}>
@@ -195,17 +193,8 @@ const CreateVenueForm = ({ formData, handleChange, isLoading, error }) => {
 
             {/* Error Message */}
             {error && <p className={styles.error}>{error}</p>}
-
-            {/* Submit Button */}
-            <button
-                type="submit"
-                className={styles.button}
-                disabled={isLoading}
-            >
-                {isLoading ? "Creating..." : "Create Venue"}
-            </button>
         </>
     );
 };
 
-export default CreateVenueForm;
+export default VenueForm;

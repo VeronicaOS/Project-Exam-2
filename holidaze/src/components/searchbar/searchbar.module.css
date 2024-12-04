@@ -27,18 +27,7 @@
 }
 
 .searchContainer button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff; /* Replace with your preferred button color */
-    color: white;
-    border: none;
-    border-radius: 0 8px 8px 0; /* Round only the right side */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.searchContainer button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    border-radius: 0 0.6rem 0.6rem 0; /* Round only the right side */
 }
 
 .searchContainer input::placeholder {

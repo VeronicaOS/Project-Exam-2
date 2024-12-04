@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchVenues } from "../../utils/fetchVenues"; // Ensure this fetch function works
 import styles from "./searchbar.module.css";
+import Button from "../button/button";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState(""); // State for the search query
@@ -74,9 +75,7 @@ const SearchBar = () => {
                 onChange={handleInputChange}
                 className={styles.searchInput}
             />
-            <button onClick={handleSearch} className={styles.searchButton}>
-                Search
-            </button>
+            <Button onClick={handleSearch}>Search</Button>
 
             {/* Display search results */}
             {searchQuery && (searchResults.length > 0 || !selectedVenue) && (
